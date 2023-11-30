@@ -1,0 +1,16 @@
+.listado-app-tachado {
+    text-decoration: line-through;
+}
+
+.listado-tarea {
+    border-bottom: 1px solid rgb(219, 219, 219);
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.listado-tarea:hover {
+    background-color: rgba(239, 239, 239, 0.662);
+    transition: .5s;
+}
