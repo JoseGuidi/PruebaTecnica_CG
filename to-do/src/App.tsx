@@ -1,34 +1,34 @@
 import "./App.css";
 import { useState } from "react";
-import { Formulario } from "./Formulario";
-import { ListadoTareas } from "./ListadoTareas";
+import { Formulario } from "./componentes/Formulario/Formulario";
+import { ListadoTareas } from "./componentes/ListadoTareas/ListadoTareas";
 
 function App() {
 
   const [tareaActual, setTareaActual] = useState("");
   const [listado, setListado] = useState<
-    {id:number, tarea: string; completado: boolean,fechaAgregada:Date }[]
+    { id: number, tarea: string; completado: boolean, fechaAgregada: Date }[]
   >([]);
-  const [ultimoIdIngresado,setUltimoIdIngresado] = useState<number>(1)
-  const [pendientes,setPendientes] = useState<number>(0);
-  const [error,setError]=useState<boolean>(false);
-  
+  const [ultimoIdIngresado, setUltimoIdIngresado] = useState<number>(1)
+  const [pendientes, setPendientes] = useState<number>(0);
+  const [error, setError] = useState<boolean>(false);
+
   function agregarTarea(e) {
     e.preventDefault();
     if (tareaActual !== "") {
       const tarea = {
-        id:ultimoIdIngresado,
+        id: ultimoIdIngresado,
         tarea: tareaActual,
         completado: false,
-        fechaAgregada:new Date()
+        fechaAgregada: new Date()
       };
       const auxArray = [tarea, ...listado];
       setListado(auxArray);
       setTareaActual("");
-      setUltimoIdIngresado(ultimoIdIngresado+1)
-      setPendientes(pendientes+1);
+      setUltimoIdIngresado(ultimoIdIngresado + 1)
+      setPendientes(pendientes + 1);
       setError(false)
-    }else{
+    } else {
       setError(true)
     }
   }
@@ -39,14 +39,14 @@ function App() {
     listado.forEach((t) => {
       if (t.id === tarea.id) {
         t.completado = !t.completado;
-        if(t.completado){
-          setPendientes(pendientes-1)
-        }else{
-          setPendientes(pendientes+1)
+        if (t.completado) {
+          setPendientes(pendientes - 1)
+        } else {
+          setPendientes(pendientes + 1)
         }
       }
     });
-    
+
     const aux = [...listado];
     setListado(aux);
   }
